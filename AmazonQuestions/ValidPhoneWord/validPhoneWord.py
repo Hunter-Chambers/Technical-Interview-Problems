@@ -42,7 +42,7 @@ def potentialWords(word, retWords, length, string="", index=0, depth=0):
 
 def main():
     retWords = []
-    word = ""
+    word = "377"
     length = len(word)
 
     i = 0
