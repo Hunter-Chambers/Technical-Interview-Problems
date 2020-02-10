@@ -27,14 +27,9 @@ def potentialWords(word, retWords, length, string="", index=0, depth=0):
         key = word[depth - 1]
         char = numDict[key][index]
 
-        if (d.check(char) and char not in retWords):
-            # if (char in validWords and char not in retWords):
-            retWords.append(char)
-
         string += char
 
-        if (d.check(char) and char not in retWords):
-            # if (string in validWords and string not in retWords):
+        if (d.check(string)):
             retWords.append(string)
 
     potentialWords(word, retWords, length, string, 0, depth + 1)
@@ -45,12 +40,14 @@ def potentialWords(word, retWords, length, string="", index=0, depth=0):
 
 def main():
     retWords = []
+    word = "324458564234582957"
     word = "377"
     length = len(word)
 
     i = 0
     while(i < length):
         temp = word[i:]
+        print(temp)
         subLength = len(temp)
         potentialWords(temp, retWords, subLength)
         i += 1
