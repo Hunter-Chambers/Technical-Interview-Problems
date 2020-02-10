@@ -17,7 +17,7 @@ numDict = {
           }
 
 
-def potentialWords(word, retWords, length, string="", index=0, depth=-1):
+def potentialWords(word, retWords, length, index=0, depth=-1, string=""):
     # base case
     if (depth == length):
         return
@@ -30,13 +30,13 @@ def potentialWords(word, retWords, length, string="", index=0, depth=-1):
         if (d.check(string) and not string in retWords):
             retWords.append(string)
 
-        potentialWords(word, retWords, length, "", 0, depth + 1)
-        potentialWords(word, retWords, length, "", 1, depth + 1)
-        potentialWords(word, retWords, length, "", 2, depth + 1)
+        potentialWords(word, retWords, length, 0, depth + 1)
+        potentialWords(word, retWords, length, 1, depth + 1)
+        potentialWords(word, retWords, length, 2, depth + 1)
 
-    potentialWords(word, retWords, length, string, 0, depth + 1)
-    potentialWords(word, retWords, length, string, 1, depth + 1)
-    potentialWords(word, retWords, length, string, 2, depth + 1)
+    potentialWords(word, retWords, length, 0, depth + 1, string)
+    potentialWords(word, retWords, length, 1, depth + 1, string)
+    potentialWords(word, retWords, length, 2, depth + 1, string)
 
     return
 
