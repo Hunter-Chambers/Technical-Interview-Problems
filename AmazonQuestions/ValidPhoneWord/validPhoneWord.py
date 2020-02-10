@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 
-validWords = ["LAYTON", "IS", "INCREDIBLY", "AWESOME", "I", "A", "SIMPLE",
-              "RUNT", "QUIT", "START", "SOPHIA", "BYTE", "TREE", "SQUID",
-              "DOG", "TOT", "BOT", "LOT", "CAT", "RUT", "PUT", "DUMB"]
+import enchant
+
+d = enchant.Dict("en_US")
+
 numDict = {
             "1": "ABC",
             "2": "DEF",
@@ -26,12 +27,14 @@ def potentialWords(word, retWords, length, string="", index=0, depth=0):
         key = word[depth - 1]
         char = numDict[key][index]
 
-        if (char in validWords and char not in retWords):
+        if (d.check(char) and char not in retWords):
+            # if (char in validWords and char not in retWords):
             retWords.append(char)
 
         string += char
 
-        if (string in validWords and string not in retWords):
+        if (d.check(char) and char not in retWords):
+            # if (string in validWords and string not in retWords):
             retWords.append(string)
 
     potentialWords(word, retWords, length, string, 0, depth + 1)
