@@ -17,40 +17,36 @@ numDict = {
           }
 
 
-def potentialWords(word, retWords, length, string="", index=0, depth=0):
-    # check if at root node or not
-    if (depth != 0):
-        # base case
-        if (depth == length + 1):
-            return
-
-        key = word[depth - 1]
+def potentialWords(word, retWords, length, string="", index=0, depth=-1):
+    # base case
+    if (depth == length):
+        return
+    elif (depth >= 0):
+        key = word[depth]
         char = numDict[key][index]
 
         string += char
 
-        if (d.check(string)):
+        if (d.check(string) and not string in retWords):
             retWords.append(string)
+
+        potentialWords(word, retWords, length, "", 0, depth + 1)
+        potentialWords(word, retWords, length, "", 1, depth + 1)
+        potentialWords(word, retWords, length, "", 2, depth + 1)
 
     potentialWords(word, retWords, length, string, 0, depth + 1)
     potentialWords(word, retWords, length, string, 1, depth + 1)
     potentialWords(word, retWords, length, string, 2, depth + 1)
+
     return
 
 
 def main():
     retWords = []
-    word = "324458564234582957"
     word = "377"
     length = len(word)
 
-    i = 0
-    while(i < length):
-        temp = word[i:]
-        print(temp)
-        subLength = len(temp)
-        potentialWords(temp, retWords, subLength)
-        i += 1
+    potentialWords(word, retWords, length)
 
     print(retWords)
 
